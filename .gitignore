@@ -1,0 +1,74 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+*.log
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+.cache/
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Complexity
+output/*.html
+output/*/index.html
+
+# Sphinx
+docs/_build
+
+# Vagrant
+.vagrant
+
+# Ansible retry files
+deploy/*.retry
+
+# Ansible galaxy packages
+kamaln7.swapfile/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Pyenv
+.python-version
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# vim
+*.swp
+
+# Private scripts
+private/
+
+# Pytest cache
+.pytest_cache/
