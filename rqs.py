@@ -11,7 +11,7 @@ from simplekv.fs import FilesystemStore
 
 STORAGE_PATH = os.path.join(Path.home(), ".rqs_storage")
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 store = FilesystemStore(STORAGE_PATH)
 
 
