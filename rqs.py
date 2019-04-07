@@ -38,7 +38,7 @@ class Entry:
             connector = "="
             color = crayons.yellow
 
-        return f"{color(self.alias)} {color(connector)} {self.content}"
+        return f"{color(self.alias, bold=True)} {color(connector)} {self.content}"
 
 
 @click.command(context_settings={"ignore_unknown_options": True})
@@ -82,26 +82,24 @@ def rqs(ctx, command, args):
         xxxxxx
     """
     if command in subcommands:  # treated as rqs command
-        if args:
-            if command == "add":
-                # invalid args, like: rqs add xx
-                if len(args) == 1:
-                    print(crayons.red("invalid argument"))
-                    exit(1)
-
-                ctx.invoke(subcommands[command], alias=args[0], args=args[1:])
-            else:
+        if command == "add":
+            # invalid args, like: rqs add xx
+            if not args or len(args) == 1:
                 print(crayons.red("invalid argument"))
                 exit(1)
 
-            if command == "delete":
-                if len(args) != 1:
-                    print(crayons.red("invalid argument"))
-                    exit(1)
+            ctx.invoke(subcommands[command], alias=args[0], args=args[1:])
+            return
 
-                ctx.invoke(subcommands[command], key=args[1])
-        else:
-            ctx.invoke(subcommands[command])
+        if command == "delete":
+            if len(args) != 1:
+                print(crayons.red("invalid argument"))
+                exit(1)
+
+            ctx.invoke(subcommands[command], key=args[0])
+            return
+
+        ctx.invoke(subcommands[command])
     else:  # treated as an entry
         matches = fnmatch.filter(store.keys(), command)
         if len(matches) > 1:
@@ -130,8 +128,11 @@ def list_all():
 
 
 def print_entries(keys):
+    print(crayons.white("Entries:", bold=True))
+    if not keys:
+        print("empty")
     for key in keys:
-        print(pickle.loads(store.get(key)))
+        print("\t" + str(pickle.loads(store.get(key))))
 
 
 def which(program):
