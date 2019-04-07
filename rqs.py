@@ -8,10 +8,10 @@ from pathlib import Path
 import click
 import crayons
 from simplekv.fs import FilesystemStore
+from setup import VERSION
 
 STORAGE_PATH = os.path.join(Path.home(), ".rqs_storage")
 
-__version__ = "0.1.3"
 store = FilesystemStore(STORAGE_PATH)
 
 
@@ -42,7 +42,7 @@ class Entry:
 
 
 @click.command(context_settings={"ignore_unknown_options": True})
-@click.version_option(version=__version__)
+@click.version_option(version=VERSION)
 @click.argument("command", nargs=1)
 @click.argument("args", nargs=-1)
 @click.pass_context

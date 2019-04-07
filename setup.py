@@ -9,7 +9,6 @@ import os
 
 from setuptools import setup
 
-from rqs import __version__
 
 # Package meta-data.
 NAME = 'rqs'
@@ -18,7 +17,7 @@ URL = 'https://github.com/tvytlx/rqs'
 EMAIL = 'tvytlx@gmail.com'
 AUTHOR = 'tvytlx'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = __version__
+VERSION = '0.1.4'
 
 # What packages are required for this module to be executed?
 with open("requirements.txt", 'r') as f:
