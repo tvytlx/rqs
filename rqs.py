@@ -8,8 +8,9 @@ from pathlib import Path
 import click
 import crayons
 from simplekv.fs import FilesystemStore
-from setup import VERSION
 
+
+VERSION = "0.1.4"
 STORAGE_PATH = os.path.join(Path.home(), ".rqs_storage")
 
 store = FilesystemStore(STORAGE_PATH)
