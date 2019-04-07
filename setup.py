@@ -25,7 +25,6 @@ with open("requirements.txt", 'r') as f:
     REQUIRED = [
         line.strip() for line in f if not line.startswith("#")
     ]
-    print(REQUIRED)
 
 # What packages are optional?
 EXTRAS = {
