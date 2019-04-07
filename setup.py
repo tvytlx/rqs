@@ -23,8 +23,9 @@ VERSION = __version__
 # What packages are required for this module to be executed?
 with open("requirements.txt", 'r') as f:
     REQUIRED = [
-        line for line in f if not line.startswith("#")
+        line.strip() for line in f if not line.startswith("#")
     ]
+    print(REQUIRED)
 
 # What packages are optional?
 EXTRAS = {
