@@ -161,6 +161,7 @@ def delete_all():
     """delete all"""
     for k in store.keys():
         store.delete(k)
+    print(crayons.white(f"🌚 rqs deleted all entries.", bold=True))
 
 
 subcommands = {"add": add, "list": list_all, "delete": delete, "delete_all": delete_all}
