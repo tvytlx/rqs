@@ -23,14 +23,14 @@ Usage: rqs [OPTIONS] COMMAND [ARGS]...
 
   EXAMPLES:
 
-      $ rqs add mongo_login mongo localhost -u xxx -p xxx
-      rqs added an command type entry.
+      $ rqs add mongo_local mongo localhost -u xxx -p xxx
+      rqs added a command entry.
 
       $ rqs mongo_local
       > (local) show dbs
 
       $ rqs add APIKEY xxxxxx
-      rqs added an variable type entry.
+      rqs added a variable entry.
 
       $ rqs APIKEY  # just print APIKEY to stdout
       xxxxxx
