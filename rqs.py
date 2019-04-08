@@ -138,8 +138,10 @@ def print_entries(keys):
     print(crayons.white("Entries:", bold=True))
     if not keys:
         print("empty")
-    for key in keys:
-        print("\t" + str(pickle.loads(store.get(key))))
+    entries = [pickle.loads(store.get(key)) for key in keys]
+    entries.sort(key=lambda x: (x.type.value, x.alias), reverse=True)
+    for entry in entries:
+        print("\t" + str(entry))
 
 
 def which(program):
