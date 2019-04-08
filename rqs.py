@@ -153,6 +153,12 @@ def which(program):
 
 
 def delete(key):
+    try:
+        store.get(key)
+    except KeyError:
+        print(crayons.yellow(f"rqs has no entry for {key}"))
+        return
+
     store.delete(key)
     print(crayons.white(f"🌚 rqs deleted {key}.", bold=True))
 
