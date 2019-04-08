@@ -30,7 +30,7 @@ Usage: rqs [OPTIONS] COMMAND [ARGS]...
       > (local) show dbs
 
       $ rqs add APIKEY xxxxxx
-      rqs added a variable entry.
+      rqs added a text entry.
 
       $ rqs APIKEY  # just print APIKEY to stdout
       xxxxxx

@@ -18,7 +18,7 @@ store = FilesystemStore(STORAGE_PATH)
 
 class EntryType(enum.Enum):
     COMMAND = "command"
-    VARIABLE = "variable"
+    TEXT = "text"
 
 
 class Entry:
@@ -30,7 +30,7 @@ class Entry:
             self.type = EntryType.COMMAND
             self.emoji = '🔮'
         else:
-            self.type = EntryType.VARIABLE
+            self.type = EntryType.TEXT
             self.emoji = '🔑'
 
     def execute(self):
@@ -55,7 +55,7 @@ class Entry:
 def rqs(ctx, command, args):
     """
 
-    A handy tool to keep your credentials or frequent used commands.
+    A handy tool to manage your credentials or frequent used commands.
 
     \b
     COMMAND:
@@ -72,8 +72,8 @@ def rqs(ctx, command, args):
     EXAMPLES:
 
     \b
-        $ rqs add mongo_login mongo localhost -u xxx -p xxx
-        rqs added an command type entry.
+        $ rqs add mongo_local mongo localhost -u xxx -p xxx
+        rqs added a command entry.
 
     \b
         $ rqs mongo_local
@@ -81,7 +81,7 @@ def rqs(ctx, command, args):
 
     \b
         $ rqs add APIKEY xxxxxx
-        rqs added an variable type entry.
+        rqs added a text entry.
 
     \b
         $ rqs APIKEY  # just print APIKEY to stdout
