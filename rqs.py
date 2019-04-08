@@ -25,8 +25,13 @@ class Entry:
     def __init__(self, alias, args):
         self.args = args
         self.content = " ".join(args)
-        self.type = EntryType.COMMAND if which(args[0]) else EntryType.VARIABLE
         self.alias = alias
+        if which(args[0]):
+            self.type = EntryType.COMMAND
+            self.emoji = '🔮'
+        else:
+            self.type = EntryType.VARIABLE
+            self.emoji = '🔑'
 
     def execute(self):
         subprocess.call(self.args)
@@ -120,6 +125,7 @@ def rqs(ctx, command, args):
 
 def add(alias, args):
     entry = Entry(alias, args)
+    print(crayons.white(f"{entry.emoji} rqs added a {entry.type.value} entry.", bold=True))
     data = pickle.dumps(entry)
     store.put(alias, data)
 
@@ -146,6 +152,7 @@ def which(program):
 
 def delete(key):
     store.delete(key)
+    print(crayons.white(f"🌚 rqs deleted {key}.", bold=True))
 
 
 def delete_all():
