@@ -2,6 +2,7 @@
 
 A handy tool to manage your credentials or frequent used commands.
 
+![img](usage.png)
 
 Usage
 ========
