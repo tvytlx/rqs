@@ -17,7 +17,7 @@ URL = 'https://github.com/tvytlx/rqs'
 EMAIL = 'tvytlx@gmail.com'
 AUTHOR = 'tvytlx'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.10'
+VERSION = '0.2.0'
 
 # What packages are required for this module to be executed?
 with open("requirements.txt", 'r') as f:
