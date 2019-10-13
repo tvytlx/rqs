@@ -22,11 +22,13 @@ class EntryType(enum.Enum):
 
 
 class Entry:
-    def __init__(self, alias, args):
-        self.args = args
-        self.content = " ".join(args)
+    def __init__(self, alias, args_content):
+        if not isinstance(args_content, (list, tuple)):
+            raise ValueError
+
         self.alias = alias
-        if which(args[0]):
+        self.content = ' '.join(args_content)
+        if is_valid_command(args_content[0]):
             self.type = EntryType.COMMAND
             self.emoji = '🔮'
         else:
@@ -34,7 +36,10 @@ class Entry:
             self.emoji = '🔑'
 
     def execute(self):
-        subprocess.call(self.args)
+        if self.type != EntryType.COMMAND:
+            raise ValueError(f"{self.type.value} type entry can't be executed.")
+
+        subprocess.call(self.content)
 
     def __str__(self):
         if self.type == EntryType.COMMAND:
@@ -93,8 +98,7 @@ def rqs(ctx, command, args):
             if not args or len(args) == 1:
                 print(crayons.red("invalid argument"))
                 exit(1)
-
-            ctx.invoke(subcommands[command], alias=args[0], args=args[1:])
+            ctx.invoke(subcommands[command], alias=args[0], entry_content=args[1:])
             return
 
         if command == "delete":
@@ -106,7 +110,7 @@ def rqs(ctx, command, args):
             return
 
         ctx.invoke(subcommands[command])
-    else:  # treated as an entry
+    else:  # treated as an existed entry
         matches = fnmatch.filter(store.keys(), command)
         if len(matches) > 1:
             print_entries(matches)
@@ -123,11 +127,11 @@ def rqs(ctx, command, args):
             print(entry.content)
 
 
-def add(alias, args):
-    entry = Entry(alias, args)
-    print(crayons.white(f"{entry.emoji} rqs added a {entry.type.value} entry.", bold=True))
+def add(alias, entry_content):
+    entry = Entry(alias, entry_content)
     data = pickle.dumps(entry)
     store.put(alias, data)
+    print(crayons.white(f"{entry.emoji} rqs added a {entry.type.value} entry.", bold=True))
 
 
 def list_all():
@@ -144,7 +148,8 @@ def print_entries(keys):
         print("\t" + str(entry))
 
 
-def which(program):
+def is_valid_command(program):
+    """ Invoke `which` command in shell to check if the command is valid."""
     return not bool(
         subprocess.call(
             ["which", program], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
@@ -165,6 +170,9 @@ def delete(key):
 
 def delete_all():
     """delete all"""
+    if input("Are you sure? y/n\n") not in ('y', ''):
+        return
+
     for k in store.keys():
         store.delete(k)
     print(crayons.white(f"🌚 rqs deleted all entries.", bold=True))
