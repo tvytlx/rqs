@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rqs"
+version = "0.3.0"
+description = "A handy tool to manage your credentials or frequent used commands."
+readme = "README.md"  # 如果存在 README.md 文件，此项将作为长描述
+license = { text = "MIT" }
+authors = [
+  { name = "tvytlx", email = "tvytlx@gmail.com" }
+]
+requires-python = ">=3.6.0"
+urls = { Homepage = "https://github.com/tvytlx/rqs" }
+dependencies = [
+  # 请将 requirements.txt 中的依赖项复制到此处，例如:
+  # "requests>=2.25.1"
+  "click",
+  "simplekv",
+  "crayons",
+]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy"
+]
+
+[project.scripts]
+rqs = "rqs:rqs"
+
+[tool.setuptools]
+py-modules = ["rqs"]
+
+[tool.flake8]
+exclude = [".svn", "CVS", ".bzr", ".hg", ".git", "__pycache__", ".ropeproject"]
+max-line-length = 120
+
+[tool.bumpversion]
+files = ["rqs.py", "setup.py"]
+current_version = "0.3.0"
+commit = true

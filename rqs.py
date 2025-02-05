@@ -10,7 +10,7 @@ import crayons
 from simplekv.fs import FilesystemStore
 
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 STORAGE_PATH = os.path.join(Path.home(), ".rqs_storage")
 
 store = FilesystemStore(STORAGE_PATH)
@@ -178,7 +178,7 @@ def delete_all():
     print(crayons.white(f"🌚 rqs deleted all entries.", bold=True))
 
 
-subcommands = {"add": add, "list": list_all, "delete": delete, "delete_all": delete_all}
+subcommands = {"add": add, "ls": list_all, "list": list_all, "del": delete, "delete": delete, "delete_all": delete_all}
 
 
 if __name__ == "__main__":
