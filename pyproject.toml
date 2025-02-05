@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rqs"
-version = "0.3.0"
+version = "0.4.0"
 description = "A handy tool to manage your credentials or frequent used commands."
 readme = "README.md"  # 如果存在 README.md 文件，此项将作为长描述
 license = { text = "MIT" }

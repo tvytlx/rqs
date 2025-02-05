@@ -10,7 +10,7 @@ import crayons
 from simplekv.fs import FilesystemStore
 
 
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 STORAGE_PATH = os.path.join(Path.home(), ".rqs_storage")
 
 store = FilesystemStore(STORAGE_PATH)
