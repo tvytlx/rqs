@@ -38,8 +38,8 @@ class Entry:
     def execute(self):
         if self.type != EntryType.COMMAND:
             raise ValueError(f"{self.type.value} type entry can't be executed.")
-
-        subprocess.call(self.content)
+        subprocess.run(self.content, shell=True, check=True)
+        # subprocess.call(self.content)
 
     def __str__(self):
         if self.type == EntryType.COMMAND:
